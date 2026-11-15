@@ -12,6 +12,9 @@
 Amount (from money)
 Currency (from money)
 Billing Period (from money)
+Offering (from offerings)
+Quantity (from offerings)
+Billing Unit (from offerings)
 
 ## Value Types
 
@@ -21,8 +24,6 @@ Resource Name is a value type.
   The data type of Resource Name is text.
 Cost Object Name is a value type.
   The data type of Cost Object Name is text.
-Offering Name is a value type.
-  The data type of Offering Name is text.
 Bill Id is a value type.
   The data type of Bill Id is text.
 Bill Line Id is a value type.
@@ -31,10 +32,6 @@ Resource Id is a value type.
   The data type of Resource Id is text.
 Line Number is a value type.
   The data type of Line Number is integer.
-Quantity is a value type.
-  The data type of Quantity is decimal.
-Billing Unit is a value type.
-  The data type of Billing Unit is text.
 ### The part of a whole a thing is given, from 0 to 1. The shares one thing is allocated by add to 1.
 Share is a value type.
   The data type of Share is decimal.
@@ -53,8 +50,6 @@ Bill Line(.Bill Line Id) is an entity type.
 Supplier Resource(.Resource Id) is an entity type.
 ### What a cost is attributed to on its way to what is sold: a service, a vehicle, a route, a team.
 Cost Object(.Cost Object Name) is an entity type.
-### What the business sells, and so what its costs are finally attributed to.
-Offering(.Offering Name) is an entity type.
 
 ## Fact Types
 
