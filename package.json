@@ -1,7 +1,7 @@
 {
   "name": "arest-business",
   "version": "0.1.0",
-  "description": "Business universals as FORML 2 readings, for any business to compose: money and billing periods, and cost attribution from supplier bills through cost objects to the offerings a business sells.",
+  "description": "Business universals as FORML 2 readings, for any business to compose: money and billing periods; offerings and their prices; customers and billing accounts; receivables (invoices, credit notes, payments, refunds, collection); subscriptions; usage metering; a double-entry ledger; and cost attribution from supplier bills through cost objects to the offerings a business sells.",
   "kind": "library",
   "scripts": {
     "check": "mkdir -p .check && bun ../../arest/tools/js-runner/program.js compile-package .check ."
@@ -11,7 +11,12 @@
     "forml2",
     "library",
     "business",
-    "cost-attribution"
+    "cost-attribution",
+    "price-book",
+    "receivables",
+    "subscriptions",
+    "usage-metering",
+    "ledger"
   ],
   "license": "MIT"
 }
