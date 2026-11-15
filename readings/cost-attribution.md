@@ -111,6 +111,11 @@ Offering has Usage Count for Billing Period.
 ### What the bills come to
 Supplier Bill has line- Amount. *
   Each Supplier Bill has at most one line- Amount.
+### A bill whose lines do not add up to the total it states: a credit, a rounding or a line not recorded.
+Supplier Bill is unreconciled. *
+### What a supplier billed for a period: the totals its bills for that period state.
+Supplier has period- Amount for Billing Period. *
+  For each Supplier and Billing Period, that Supplier has at most one period- Amount for that Billing Period.
 Supplier Resource has period- Amount for Billing Period. *
   For each Supplier Resource and Billing Period, that Supplier Resource has at most one period- Amount for that Billing Period.
 ### Each part a resource gives a cost object, and a cost object an offering, in a period: the cost of the giver
@@ -140,6 +145,12 @@ Offering has unit- Amount for Billing Period. *
 
 * Supplier Bill has line- Amount iff line- Amount is the sum of Amount where some Bill Line is on that Supplier Bill and that Bill Line has that Amount.
 
+* Supplier Bill is unreconciled if that Supplier Bill has some stated- Amount1 and that Supplier Bill has some line- Amount2 where Amount1 < Amount2.
+
+* Supplier Bill is unreconciled if that Supplier Bill has some stated- Amount1 and that Supplier Bill has some line- Amount2 where Amount1 > Amount2.
+
+* Supplier has period- Amount for Billing Period iff period- Amount is the sum of Amount where some Supplier Bill is from that Supplier and that Supplier Bill covers that Billing Period and that Supplier Bill has that stated- Amount.
+
 * Supplier Resource has period- Amount for Billing Period iff period- Amount is the sum of Amount where some Bill Line is for that Supplier Resource and that Bill Line has that Amount and that Bill Line is on some Supplier Bill and that Supplier Bill covers that Billing Period.
 
 * Supplier Resource gives allocated- Amount1 to Cost Object for Billing Period iff that Supplier Resource is allocated to that Cost Object by some Share and that Supplier Resource has some period- Amount2 for that Billing Period and allocated- Amount1 is that period- Amount2 times that Share.
@@ -159,6 +170,10 @@ Offering has unit- Amount for Billing Period. *
 * Offering has unit- Amount1 for Billing Period iff that Offering has some period- Amount2 for that Billing Period and that Offering has some Usage Count for that Billing Period and unit- Amount1 is that period- Amount2 divided by that Usage Count.
 
 ## Deontic Constraints
+
+### A bill whose lines do not add up to its stated total is shown, not refused: suppliers' bills carry credits and
+### roundings, and someone decides what to record.
+It is forbidden that some Supplier Bill is unreconciled.
 
 ### Every resource a supplier bills for is carried by some cost object, or is said to be carried by none.
 It is obligatory that each Supplier Resource is allocated to some Cost Object by some Share unless that Supplier Resource is unattributed.
