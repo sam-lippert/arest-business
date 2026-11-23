@@ -14,8 +14,6 @@ Currency (from money)
 
 ## Value Types
 
-Customer Id is a value type.
-  The data type of Customer Id is text.
 Customer Name is a value type.
   The data type of Customer Name is text.
 Billing Account Code is a value type.
@@ -37,7 +35,8 @@ External Reference is a value type.
 
 ## Entity Types
 
-Customer(.Customer Id) is an entity type.
+### How a customer is identified is the business's own to say: by an email address, by a number it gives, by a tax number.
+Customer is an entity type.
 Billing Account(.Billing Account Code) is an entity type.
 ### A system outside the business that keeps some of its records and reports facts about them: a payment processor,
 ### an accounting system, a marketplace.

@@ -38,16 +38,19 @@ Subscription Item(.Subscription Item Id) is an entity type.
 ## Fact Types
 
 ### The subscription
+### As an invoice is, a subscription a biller reports is known before whose it is or what it is to.
 Subscription is held by Billing Account.
-  Each Subscription is held by exactly one Billing Account.
+  Each Subscription is held by at most one Billing Account.
 ### What is subscribed to: a plan, a contract, a service.
 Subscription is to Offering.
-  Each Subscription is to exactly one Offering.
+  Each Subscription is to at most one Offering.
 Subscription starts on Date.
   Each Subscription starts on at most one Date.
 ### It ends at the end of the period it is in, unless the setting is undone before then.
 Subscription is set to cancel at period end.
 ### The day it ended, reported when it ends, whoever ended it.
+### That it ended, reported by whoever ended it, or known by the day it did.
+Subscription ends. +
 Subscription ends on Date.
   Each Subscription ends on at most one Date.
 Subscription is recorded in External System as External Reference.
@@ -83,8 +86,9 @@ Subscription covers Offering. *
 ### An offering the subscription bills a usage price for.
 Subscription meters Offering. *
 Subscription Item is outside its subscription. *
-Subscription has paid- Invoice. *
-Subscription has failed- Invoice. *
+### Reported by the biller, or derived from the payments allocated to the invoice.
+Subscription has paid- Invoice. +
+Subscription has failed- Invoice. +
 Subscription is delinquent. *
 ### Started and not ended.
 Subscription is in force. *
@@ -111,13 +115,14 @@ Offering brings monthly-recurring- Amount in Currency. *
 
 * Subscription Item is outside its subscription iff that Subscription Item is on some Subscription and that Subscription Item bills some Price and that Price is for some Offering and it is not true that that Subscription covers that Offering.
 
-* Subscription has paid- Invoice iff that Invoice is for that Subscription and that Invoice is settled.
++ Subscription has paid- Invoice if that Invoice is for that Subscription and that Invoice is settled.
 
-* Subscription has failed- Invoice iff that Invoice is for that Subscription and some Payment is allocated to that Invoice for some Amount and that Payment fails.
++ Subscription has failed- Invoice if that Invoice is for that Subscription and some Payment is allocated to that Invoice for some Amount and that Payment fails.
 
 * Subscription is delinquent iff some Invoice is for that Subscription and that Invoice is delinquent.
 
-* Subscription is in force iff that Subscription starts on some Date1 and it is not true that that Subscription ends on some Date2.
++ Subscription ends if that Subscription ends on some Date.
+* Subscription is in force iff that Subscription starts on some Date and it is not true that that Subscription ends.
 
 * Subscription is in its trial iff that Subscription trial starts and it is not true that that Subscription has some paid- Invoice.
 
@@ -184,19 +189,19 @@ Transition 'fall-behind' is defined in State Machine Definition 'Subscription'.
 Transition 'end-pending' is defined in State Machine Definition 'Subscription'.
   Transition 'end-pending' is from Status 'Pending'.
   Transition 'end-pending' is to Status 'Ended'.
-  Transition 'end-pending' is triggered by Fact Type 'Subscription ends on Date'.
+  Transition 'end-pending' is triggered by Fact Type 'Subscription ends'.
 Transition 'end-trialing' is defined in State Machine Definition 'Subscription'.
   Transition 'end-trialing' is from Status 'Trialing'.
   Transition 'end-trialing' is to Status 'Ended'.
-  Transition 'end-trialing' is triggered by Fact Type 'Subscription ends on Date'.
+  Transition 'end-trialing' is triggered by Fact Type 'Subscription ends'.
 Transition 'end-active' is defined in State Machine Definition 'Subscription'.
   Transition 'end-active' is from Status 'Active'.
   Transition 'end-active' is to Status 'Ended'.
-  Transition 'end-active' is triggered by Fact Type 'Subscription ends on Date'.
+  Transition 'end-active' is triggered by Fact Type 'Subscription ends'.
 Transition 'end-past-due' is defined in State Machine Definition 'Subscription'.
   Transition 'end-past-due' is from Status 'Past Due'.
   Transition 'end-past-due' is to Status 'Ended'.
-  Transition 'end-past-due' is triggered by Fact Type 'Subscription ends on Date'.
+  Transition 'end-past-due' is triggered by Fact Type 'Subscription ends'.
 
 ## Domain Metadata
 

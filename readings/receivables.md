@@ -62,11 +62,14 @@ Collection Policy(.Collection Policy Name) is an entity type.
 
 ## Fact Types
 
+### An invoice, a payment or a refund that an external system reports is known by its reference before anything else of it
+### is, so nothing else of one is mandatory here; a business that writes its own says what it must have.
+
 ### The invoice
 Invoice is billed to Billing Account.
-  Each Invoice is billed to exactly one Billing Account.
+  Each Invoice is billed to at most one Billing Account.
 Invoice is in Currency.
-  Each Invoice is in exactly one Currency.
+  Each Invoice is in at most one Currency.
 ### A draft has no issue date and asks for nothing yet.
 Invoice is issued on Date.
   Each Invoice is issued on at most one Date.
@@ -115,11 +118,11 @@ Credit Note is recorded in External System as External Reference.
 
 ### The payment
 Payment is from Billing Account.
-  Each Payment is from exactly one Billing Account.
+  Each Payment is from at most one Billing Account.
 Payment has Amount.
-  Each Payment has exactly one Amount.
+  Each Payment has at most one Amount.
 Payment is in Currency.
-  Each Payment is in exactly one Currency.
+  Each Payment is in at most one Currency.
 Payment is received on Date.
   Each Payment is received on at most one Date.
 Payment has Payment Outcome.
@@ -135,9 +138,9 @@ Payment is recorded in External System as External Reference.
 
 ### The refund
 Refund is of Payment.
-  Each Refund is of exactly one Payment.
+  Each Refund is of at most one Payment.
 Refund has Amount.
-  Each Refund has exactly one Amount.
+  Each Refund has at most one Amount.
 Refund is issued on Date.
   Each Refund is issued on at most one Date.
 Refund is recorded in External System as External Reference.
