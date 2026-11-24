@@ -50,7 +50,7 @@ Subscription starts on Date.
 Subscription is set to cancel at period end.
 ### The day it ended, reported when it ends, whoever ended it.
 ### That it ended, reported by whoever ended it, or known by the day it did.
-Subscription ends. +
+Subscription ends. ++
 Subscription ends on Date.
   Each Subscription ends on at most one Date.
 Subscription is recorded in External System as External Reference.
@@ -87,8 +87,8 @@ Subscription covers Offering. *
 Subscription meters Offering. *
 Subscription Item is outside its subscription. *
 ### Reported by the biller, or derived from the payments allocated to the invoice.
-Subscription has paid- Invoice. +
-Subscription has failed- Invoice. +
+Subscription has paid- Invoice. ++
+Subscription has failed- Invoice. ++
 Subscription is delinquent. *
 ### Started and not ended.
 Subscription is in force. *
