@@ -10,12 +10,12 @@
 
 ## Cross-domain References
 
-Amount (from money)
-Currency (from money)
-Billing Period (from money)
-Offering (from offerings)
-Quantity (from offerings)
-Billing Unit (from offerings)
+### Amount (from money)
+### Currency (from money)
+### Billing Period (from money)
+### Offering (from offerings)
+### Quantity (from offerings)
+### Billing Unit (from offerings)
 
 ## Value Types
 

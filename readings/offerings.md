@@ -9,8 +9,8 @@
 
 ## Cross-domain References
 
-Amount (from money)
-Currency (from money)
+### Amount (from money)
+### Currency (from money)
 
 ## Value Types
 

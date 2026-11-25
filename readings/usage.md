@@ -10,15 +10,15 @@
 
 ## Cross-domain References
 
-Amount (from money)
-Billing Period (from money)
-Offering (from offerings)
-Price (from offerings)
-Quantity (from offerings)
-Billing Account (from customers)
-Date (from receivables)
-Subscription (from subscriptions)
-Subscription Item (from subscriptions)
+### Amount (from money)
+### Billing Period (from money)
+### Offering (from offerings)
+### Price (from offerings)
+### Quantity (from offerings)
+### Billing Account (from customers)
+### Date (from receivables)
+### Subscription (from subscriptions)
+### Subscription Item (from subscriptions)
 
 ## Value Types
 

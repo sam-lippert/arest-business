@@ -12,16 +12,16 @@
 
 ## Cross-domain References
 
-Amount (from money)
-Currency (from money)
-Billing Period (from money)
-Offering (from offerings)
-Price (from offerings)
-Quantity (from offerings)
-Billing Account (from customers)
-Day Count (from customers)
-External System (from customers)
-External Reference (from customers)
+### Amount (from money)
+### Currency (from money)
+### Billing Period (from money)
+### Offering (from offerings)
+### Price (from offerings)
+### Quantity (from offerings)
+### Billing Account (from customers)
+### Day Count (from customers)
+### External System (from customers)
+### External Reference (from customers)
 
 ## Value Types
 

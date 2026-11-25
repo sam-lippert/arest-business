@@ -10,7 +10,7 @@
 
 ## Cross-domain References
 
-Currency (from money)
+### Currency (from money)
 
 ## Value Types
 

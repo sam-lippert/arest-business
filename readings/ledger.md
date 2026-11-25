@@ -11,14 +11,14 @@
 
 ## Cross-domain References
 
-Amount (from money)
-Billing Period (from money)
-Supplier Bill (from cost-attribution)
-Invoice (from receivables)
-Credit Note (from receivables)
-Payment (from receivables)
-Refund (from receivables)
-Date (from receivables)
+### Amount (from money)
+### Billing Period (from money)
+### Supplier Bill (from cost-attribution)
+### Invoice (from receivables)
+### Credit Note (from receivables)
+### Payment (from receivables)
+### Refund (from receivables)
+### Date (from receivables)
 
 ## Value Types
 
