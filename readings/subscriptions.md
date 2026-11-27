@@ -4,7 +4,7 @@
 ### Subscription Item is one price the subscription bills: a recurring price, at a quantity where it is sold by the
 ### seat or the vehicle, or a usage price, charged for what is used. A subscription may begin with a trial of the days
 ### its offering gives. It moves on what happens to it: a trial starts; an invoice for it is paid; a payment for one
-### fails, which leaves it past due until an invoice is paid (dunning); it ends. Whether a past-due or delinquent
+### fails, which leaves it past due until that invoice is settled (dunning); it ends. Whether a past-due or delinquent
 ### subscription is waited on, suspended or ended is the business's own to say. What a subscription brings in a month
 ### is derived from its items, and summed by offering it is the offering's monthly recurring revenue.
 
@@ -90,6 +90,9 @@ Subscription Item is outside its subscription. *
 Subscription has paid- Invoice. ++
 Subscription has failed- Invoice. ++
 Subscription is delinquent. *
+### Past due: a payment for an invoice of it failed and that invoice is not settled. It is said of the subscription
+### beside its machine, not as a status the machine would come back from (c-2026-11-27-dont-loop).
+Subscription is past due. *
 ### Started and not ended.
 Subscription is in force. *
 ### In its trial: the trial started and no invoice for it has been paid.
@@ -120,6 +123,7 @@ Offering brings monthly-recurring- Amount in Currency. *
 + Subscription has failed- Invoice if that Invoice is for that Subscription and some Payment is allocated to that Invoice for some Amount and that Payment fails.
 
 * Subscription is delinquent iff some Invoice is for that Subscription and that Invoice is delinquent.
+* Subscription is past due iff that Subscription has some failed- Invoice and it is not true that that Invoice is settled.
 
 + Subscription ends if that Subscription ends on some Date.
 * Subscription is in force iff that Subscription starts on some Date and it is not true that that Subscription ends.
@@ -147,13 +151,13 @@ It is obligatory that each Billing Account has at most one trialed- Subscription
 
 ## Instance Facts
 
-### A subscription waits in 'Pending' until a trial starts or an invoice for it is paid. A failed payment leaves it
-### 'Past Due' and a paid invoice brings it back. It ends from any status when its end is reported.
+### A subscription waits in 'Pending' until a trial starts or an invoice for it is paid, and ends from any status when
+### its end is reported. It goes forward only: a failed payment leaves it past due (derived above) where it stands, and
+### the invoice settled clears that, so no status is left and come back to.
 State Machine Definition 'Subscription' is for Object Type 'Subscription'.
 Status 'Pending' is defined in State Machine Definition 'Subscription'.
 Status 'Trialing' is defined in State Machine Definition 'Subscription'.
 Status 'Active' is defined in State Machine Definition 'Subscription'.
-Status 'Past Due' is defined in State Machine Definition 'Subscription'.
 Status 'Ended' is defined in State Machine Definition 'Subscription'.
 Status 'Pending' is initial in State Machine Definition 'Subscription'.
 Status 'Ended' is terminal in State Machine Definition 'Subscription'.
@@ -170,22 +174,6 @@ Transition 'convert' is defined in State Machine Definition 'Subscription'.
   Transition 'convert' is from Status 'Trialing'.
   Transition 'convert' is to Status 'Active'.
   Transition 'convert' is triggered by Fact Type 'Subscription has paid- Invoice'.
-Transition 'recover' is defined in State Machine Definition 'Subscription'.
-  Transition 'recover' is from Status 'Past Due'.
-  Transition 'recover' is to Status 'Active'.
-  Transition 'recover' is triggered by Fact Type 'Subscription has paid- Invoice'.
-Transition 'fail-first' is defined in State Machine Definition 'Subscription'.
-  Transition 'fail-first' is from Status 'Pending'.
-  Transition 'fail-first' is to Status 'Past Due'.
-  Transition 'fail-first' is triggered by Fact Type 'Subscription has failed- Invoice'.
-Transition 'miss-conversion' is defined in State Machine Definition 'Subscription'.
-  Transition 'miss-conversion' is from Status 'Trialing'.
-  Transition 'miss-conversion' is to Status 'Past Due'.
-  Transition 'miss-conversion' is triggered by Fact Type 'Subscription has failed- Invoice'.
-Transition 'fall-behind' is defined in State Machine Definition 'Subscription'.
-  Transition 'fall-behind' is from Status 'Active'.
-  Transition 'fall-behind' is to Status 'Past Due'.
-  Transition 'fall-behind' is triggered by Fact Type 'Subscription has failed- Invoice'.
 Transition 'end-pending' is defined in State Machine Definition 'Subscription'.
   Transition 'end-pending' is from Status 'Pending'.
   Transition 'end-pending' is to Status 'Ended'.
@@ -198,10 +186,6 @@ Transition 'end-active' is defined in State Machine Definition 'Subscription'.
   Transition 'end-active' is from Status 'Active'.
   Transition 'end-active' is to Status 'Ended'.
   Transition 'end-active' is triggered by Fact Type 'Subscription ends'.
-Transition 'end-past-due' is defined in State Machine Definition 'Subscription'.
-  Transition 'end-past-due' is from Status 'Past Due'.
-  Transition 'end-past-due' is to Status 'Ended'.
-  Transition 'end-past-due' is triggered by Fact Type 'Subscription ends'.
 
 ## Domain Metadata
 
